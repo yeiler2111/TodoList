@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{ data ? 'Editar TODO' : 'Crear TODO' }}</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="form.get('title')?.hasError('required')">
+        El título es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="pendiente">Pendiente</mat-option>
+        <mat-option value="en-curso">En curso</mat-option>
+        <mat-option value="realizada">Realizada</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('status')?.hasError('required')">
+        El estado es obligatorio
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      {{ data ? 'Actualizar' : 'Crear' }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="m">
+    <label for="statusFilter" class="filter-label">Filtrar por estado</label>
+    <mat-select
+      [(value)]="selectedStatus"
+      (selectionChange)="applyFilter()"
+      id="statusFilter"
+      class="filter-select"
+    >
+      <mat-option value="">Todos</mat-option>
+      <mat-option value="pendiente">Pendiente</mat-option>
+      <mat-option value="realizada">Realizada</mat-option>
+      <mat-option value="en-curso">En curso</mat-option>
+    </mat-select>
+  </div>
+
+  <app-todo-table
+    class="dimension"
+    [selectedStatus]="selectedStatus"
+  ></app-todo-table>
+</div>
